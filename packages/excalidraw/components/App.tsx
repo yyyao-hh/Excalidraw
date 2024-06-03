@@ -669,7 +669,7 @@ class App extends React.Component<AppProps, AppState> {
     );
     this.scene = new Scene();
 
-    this.canvas = document.createElement("canvas");
+    this.canvas = document.createElement("canvas"); // 创建画布
     this.rc = rough.canvas(this.canvas);
     this.renderer = new Renderer(this.scene);
 
@@ -5097,7 +5097,7 @@ class App extends React.Component<AppProps, AppState> {
     return frames.length ? frames[frames.length - 1] : null;
   };
 
-  private handleCanvasPointerMove = (
+  private handleCanvasPointerMove = ( // 鼠标移动事件
     event: React.PointerEvent<HTMLCanvasElement>,
   ) => {
     this.savePointer(event.clientX, event.clientY, this.state.cursorButton);
@@ -5714,18 +5714,19 @@ class App extends React.Component<AppProps, AppState> {
   private handleCanvasPointerDown = (
     event: React.PointerEvent<HTMLElement>,
   ) => {
-    this.maybeCleanupAfterMissingPointerUp(event.nativeEvent);
-    this.maybeUnfollowRemoteUser();
+    debugger
+    this.maybeCleanupAfterMissingPointerUp(event.nativeEvent); // 某些情况下, 可能会遗漏指针抬起事件, 此方法用于清理那些情况
+    this.maybeUnfollowRemoteUser(); // 可能取消跟随远程用户的操作
 
     // since contextMenu options are potentially evaluated on each render,
     // and an contextMenu action may depend on selection state, we must
     // close the contextMenu before we update the selection on pointerDown
     // (e.g. resetting selection)
-    if (this.state.contextMenu) {
+    if (this.state.contextMenu) { // 关闭上下文菜单
       this.setState({ contextMenu: null });
     }
 
-    if (this.state.snapLines) {
+    if (this.state.snapLines) { // 清理对齐线
       this.setAppState({ snapLines: [] });
     }
 
@@ -5816,7 +5817,7 @@ class App extends React.Component<AppProps, AppState> {
     });
     this.savePointer(event.clientX, event.clientY, "down");
 
-    if (
+    if ( // 处理橡皮擦工具
       event.button === POINTER_BUTTON.ERASER &&
       this.state.activeTool.type !== TOOL_TYPE.eraser
     ) {
@@ -5949,7 +5950,7 @@ class App extends React.Component<AppProps, AppState> {
         y,
         frameId: frame ? frame.id : null,
       });
-    } else if (this.state.activeTool.type === "freedraw") {
+    } else if (this.state.activeTool.type === "freedraw") { // 自由绘制工具
       this.handleFreeDrawElementOnPointerDown(
         event,
         this.state.activeTool.type,
@@ -6716,7 +6717,7 @@ class App extends React.Component<AppProps, AppState> {
     }
   };
 
-  private handleFreeDrawElementOnPointerDown = (
+  private handleFreeDrawElementOnPointerDown = ( // 自由绘制工具按下事件
     event: React.PointerEvent<HTMLElement>,
     elementType: ExcalidrawFreeDrawElement["type"],
     pointerDownState: PointerDownState,
@@ -6733,7 +6734,7 @@ class App extends React.Component<AppProps, AppState> {
       y: gridY,
     });
 
-    const element = newFreeDrawElement({
+    const element = newFreeDrawElement({ // 创建一个自定义绘图
       type: elementType,
       x: gridX,
       y: gridY,

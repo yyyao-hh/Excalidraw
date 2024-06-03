@@ -422,7 +422,7 @@ export const elementWithCanvasCache = new WeakMap<
   ExcalidrawElementWithCanvas
 >();
 
-const generateElementWithCanvas = (
+const generateElementWithCanvas = ( // 创建一个 canvas 图形
   element: NonDeletedExcalidrawElement,
   elementsMap: RenderableElementsMap,
   renderConfig: StaticCanvasRenderConfig,

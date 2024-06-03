@@ -165,7 +165,6 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
       }}
       onPointerUp={() => {
         requestAnimationFrame(() => {
-          debugger
           lastPointerTypeRef.current = null;
         });
       }}
@@ -179,7 +178,6 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
         data-testid={props["data-testid"]}
         id={`${excalId}-${props.id}`}
         onChange={() => {
-          debugger
           props.onChange?.({ pointerType: lastPointerTypeRef.current });
         }}
         checked={props.checked}
