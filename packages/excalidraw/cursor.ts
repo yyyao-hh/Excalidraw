@@ -75,7 +75,7 @@ export const setEraserCursor = (
   );
 };
 
-export const setCursorForShape = (
+export const setCursorForShape = ( // 通过检查应用状态中激活的工具类型, 设置相应的光标
   interactiveCanvas: HTMLCanvasElement | null,
   appState: Pick<AppState, "activeTool" | "theme">,
 ) => {

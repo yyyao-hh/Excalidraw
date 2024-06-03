@@ -265,7 +265,7 @@ export const ShapesSwitcher = ({
 
   const { TTDDialogTriggerTunnel } = useTunnels();
 
-  return (
+  return ( // 工具栏普通工具 (抓手、矩形等)
     <>
       {SHAPES.map(({ value, icon, key, numericKey, fillable }, index) => {
         if (

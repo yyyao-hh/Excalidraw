@@ -1,3 +1,5 @@
+// 单个工具栏普通工具 (抓手、矩形等)
+
 import "./ToolIcon.scss";
 
 import type { CSSProperties } from "react";
@@ -158,11 +160,12 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
       className={clsx("ToolIcon", props.className)}
       title={props.title}
       onPointerDown={(event) => {
-        lastPointerTypeRef.current = event.pointerType || null;
+        lastPointerTypeRef.current = event.pointerType || null; // 记录当前按下的工具
         props.onPointerDown?.({ pointerType: event.pointerType || null });
       }}
       onPointerUp={() => {
         requestAnimationFrame(() => {
+          debugger
           lastPointerTypeRef.current = null;
         });
       }}
@@ -176,6 +179,7 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
         data-testid={props["data-testid"]}
         id={`${excalId}-${props.id}`}
         onChange={() => {
+          debugger
           props.onChange?.({ pointerType: lastPointerTypeRef.current });
         }}
         checked={props.checked}

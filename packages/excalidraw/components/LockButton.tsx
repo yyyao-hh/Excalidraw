@@ -1,3 +1,5 @@
+// 绘制后保持所选的工具栏状态
+
 import "./ToolIcon.scss";
 
 import clsx from "clsx";

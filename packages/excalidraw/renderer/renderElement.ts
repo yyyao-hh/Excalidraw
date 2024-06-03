@@ -180,13 +180,14 @@ const cappedElementCanvasSize = (
   return { width, height, scale };
 };
 
-const generateElementCanvas = (
+const generateElementCanvas = ( // 创建 canvas 图形
   element: NonDeletedExcalidrawElement,
   elementsMap: RenderableElementsMap,
   zoom: Zoom,
   renderConfig: StaticCanvasRenderConfig,
   appState: StaticCanvasAppState,
 ): ExcalidrawElementWithCanvas => {
+  debugger
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d")!;
   const padding = getCanvasPadding(element);

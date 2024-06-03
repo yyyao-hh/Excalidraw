@@ -4163,7 +4163,7 @@ class App extends React.Component<AppProps, AppState> {
     );
   };
 
-  setActiveTool = (
+  setActiveTool = ( // 设置当前激活的工具
     tool: (
       | (
           | { type: Exclude<ToolType, "image"> }
@@ -6827,7 +6827,7 @@ class App extends React.Component<AppProps, AppState> {
   };
 
   //create rectangle element with youtube top left on nearest grid point width / hight 640/360
-  public insertEmbeddableElement = ({
+  public insertEmbeddableElement = ({ // 在画布上插入一个可嵌入的元素 (例如 YouTube 视频)
     sceneX,
     sceneY,
     link,
@@ -7049,7 +7049,7 @@ class App extends React.Component<AppProps, AppState> {
     }
   };
 
-  private getCurrentItemRoundness(
+  private getCurrentItemRoundness( // 检查当前元素的圆角设置
     elementType:
       | "selection"
       | "rectangle"
@@ -8867,7 +8867,7 @@ class App extends React.Component<AppProps, AppState> {
     }
   };
 
-  private onImageAction = async ({
+  private onImageAction = async ({ // 工具栏 - 插入图片
     insertOnCanvasDirectly,
   }: {
     insertOnCanvasDirectly: boolean;
@@ -8876,7 +8876,7 @@ class App extends React.Component<AppProps, AppState> {
       const clientX = this.state.width / 2 + this.state.offsetLeft;
       const clientY = this.state.height / 2 + this.state.offsetTop;
 
-      const { x, y } = viewportCoordsToSceneCoords(
+      const { x, y } = viewportCoordsToSceneCoords( // 计算画布中心点坐标
         { clientX, clientY },
         this.state,
       );

@@ -1,12 +1,14 @@
+// 用于在应用中跟踪用户行为事件
+
 // place here categories that you want to track. We want to track just a
 // small subset of categories at a given time.
-const ALLOWED_CATEGORIES_TO_TRACK = ["ai", "command_palette"] as string[];
+const ALLOWED_CATEGORIES_TO_TRACK = ["ai", "command_palette"] as string[]; // 允许跟踪的事件类别
 
 export const trackEvent = (
-  category: string,
-  action: string,
-  label?: string,
-  value?: number,
+  category: string, // 事件类别, 用于分类事件
+  action: string,   // 事件动作, 描述用户的具体行为
+  label?: string,   // 事件标签, 提供额外的信息
+  value?: number,   // 事件值, 可以用于数值数据的跟踪
 ) => {
   try {
     // prettier-ignore
