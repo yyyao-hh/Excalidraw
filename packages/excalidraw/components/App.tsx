@@ -3705,7 +3705,7 @@ class App extends React.Component<AppProps, AppState> {
     },
   );
 
-  public updateScene = withBatchedUpdates(
+  public updateScene = withBatchedUpdates( // 用于批量更新场景数据 (包括元素、应用状态和协作信息)
     <K extends keyof AppState>(sceneData: {
       elements?: SceneData["elements"];
       appState?: Pick<AppState, K> | null;
@@ -3713,7 +3713,7 @@ class App extends React.Component<AppProps, AppState> {
       /** @default StoreAction.NONE */
       storeAction?: SceneData["storeAction"];
     }) => {
-      const nextElements = syncInvalidIndices(sceneData.elements ?? []);
+      const nextElements = syncInvalidIndices(sceneData.elements ?? []); // 同步元素索引
 
       if (sceneData.storeAction && sceneData.storeAction !== StoreAction.NONE) {
         const prevCommittedAppState = this.store.snapshot.appState;
@@ -5737,7 +5737,7 @@ class App extends React.Component<AppProps, AppState> {
     // discard the freedraw element if it is very short because it is likely
     // just a spike, otherwise finalize the freedraw element when the second
     // finger is lifted
-    if (
+    if ( // 处理自由绘制工具的特殊情况
       event.pointerType === "touch" &&
       this.state.draggingElement &&
       this.state.draggingElement.type === "freedraw"
@@ -9837,26 +9837,26 @@ class App extends React.Component<AppProps, AppState> {
     }
   }
 
-  private savePointer = (x: number, y: number, button: "up" | "down") => {
+  private savePointer = (x: number, y: number, button: "up" | "down") => { // 用于保存指针的位置和状态
     if (!x || !y) {
       return;
     }
-    const { x: sceneX, y: sceneY } = viewportCoordsToSceneCoords(
+    const { x: sceneX, y: sceneY } = viewportCoordsToSceneCoords( // 将视口坐标(clientX 和 clientY)转换为场景坐标(sceneX 和 sceneY), 以适应画布的缩放和平移
       { clientX: x, clientY: y },
       this.state,
     );
 
-    if (isNaN(sceneX) || isNaN(sceneY)) {
+    if (isNaN(sceneX) || isNaN(sceneY)) { // 检查转换后的坐标有效性
       // sometimes the pointer goes off screen
     }
 
-    const pointer: CollaboratorPointer = {
+    const pointer: CollaboratorPointer = { // 创建协作指针对象
       x: sceneX,
       y: sceneY,
       tool: this.state.activeTool.type === "laser" ? "laser" : "pointer",
     };
 
-    this.props.onPointerUpdate?.({
+    this.props.onPointerUpdate?.({ // 触发指针更新回调
       pointer,
       button,
       pointersMap: gesture.pointers,
@@ -9930,7 +9930,7 @@ class App extends React.Component<AppProps, AppState> {
     };
   }
 
-  private async updateLanguage() {
+  private async updateLanguage() { // 更新语言
     const currentLang =
       languages.find((lang) => lang.code === this.props.langCode) ||
       defaultLang;
